@@ -279,6 +279,8 @@ img {
     margin-bottom: 0.5em;
     color: #fff;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    opacity: 0; /* Initial state for animation */
+    animation: slideUpFadeIn 0.8s ease-out 0.5s forwards;
 }
 
 #hero p {
@@ -287,6 +289,8 @@ img {
     margin-bottom: 1.5em;
     color: #f0f0f0;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    opacity: 0; /* Initial state for animation */
+    animation: slideUpFadeIn 0.8s ease-out 0.8s forwards;
 }
 
 #hero .btn-primary {
@@ -296,6 +300,8 @@ img {
     color: #fff;
     border: none;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 0; /* Initial state for animation */
+    animation: slideUpFadeIn 0.8s ease-out 1.1s forwards;
 }
 
 #hero .btn-primary:hover {
@@ -753,5 +759,17 @@ img {
     }
     .footer-links ul {
         padding-left: 0;
+    }
+}
+
+/* --- Animations --- */
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
