@@ -763,8 +763,219 @@ img {
 }
 
 /* --- Animations --- */
-@keyframes slideUpFadeIn {
+@keyframes slideUpFadeIn { /* Renaming or creating a new one for slide content */
     from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation for slide content */
+@keyframes heroSlideContentIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* --- Hero Section Swiper Override/New Styles --- */
+#hero {
+    height: 100vh; /* Or a fixed height like 700px, adjust as needed */
+    width: 100%;
+    overflow: hidden; /* Important for swiper */
+    position: relative; /* For positioning content and nav */
+    background: #333; /* Fallback background if images are slow */
+}
+
+.hero-swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+    position: relative; /* For overlay and content positioning */
+    display: flex;
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+    text-align: center;
+    color: #fff;
+}
+
+.hero-slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+    z-index: 1;
+}
+
+.hero-slide-content {
+    position: relative; /* Above overlay */
+    z-index: 2;
+    max-width: 800px; /* Control content width */
+    padding: 20px;
+}
+
+/* Remove previous hero content animations if they were general */
+/* #hero h1, #hero p, #hero .btn-primary { animation: none; opacity: 1;} */
+/* Instead, we will animate per-slide content */
+
+.hero-slide-content .hero-business-info {
+    font-size: 0.9em;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: 0; /* Initial state for animation */
+}
+.swiper-slide-active .hero-slide-content .hero-business-info {
+    animation: heroSlideContentIn 0.6s ease-out 0.3s forwards;
+}
+
+
+/* Placeholder for Animated Rotating Text. Custom JS will be needed for the actual rotation animation. */
+.hero-slide-content .hero-rotating-text-placeholder {
+    /* Basic styling for the placeholder - actual rotation would be JS */
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    min-height: 30px; /* Placeholder height */
+    opacity: 0; /* Initial state for animation */
+}
+.hero-slide-content .hero-rotating-text-placeholder span {
+    display: none; /* JS would cycle through these */
+}
+.hero-slide-content .hero-rotating-text-placeholder span:first-child {
+    display: inline; /* Show first one by default */
+}
+.swiper-slide-active .hero-slide-content .hero-rotating-text-placeholder {
+     animation: heroSlideContentIn 0.6s ease-out 0.5s forwards;
+}
+
+
+.hero-slide-content .hero-leading-text { /* This is the H1 in new HTML */
+    font-family: var(--font-headings);
+    font-size: 2.8em; /* Adjust as needed for slides */
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5em;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+    opacity: 0; /* Initial state for animation */
+}
+.swiper-slide-active .hero-slide-content .hero-leading-text {
+    animation: heroSlideContentIn 0.7s ease-out 0.7s forwards;
+}
+
+.hero-slide-content .hero-caption { /* This is the p tag in new HTML */
+    font-family: var(--font-body);
+    font-size: 1.2em;
+    color: #f0f0f0;
+    margin-bottom: 1.5em;
+    line-height: 1.6;
+    opacity: 0; /* Initial state for animation */
+}
+.swiper-slide-active .hero-slide-content .hero-caption {
+    animation: heroSlideContentIn 0.7s ease-out 0.9s forwards;
+}
+
+
+.hero-slide-content .hero-slide-cta { /* This is the .btn in new HTML */
+    padding: 12px 30px;
+    font-size: 1em;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    opacity: 0; /* Initial state for animation */
+}
+.swiper-slide-active .hero-slide-content .hero-slide-cta {
+    animation: heroSlideContentIn 0.7s ease-out 1.1s forwards;
+}
+
+.hero-slide-content .hero-slide-cta:hover {
+    background-color: var(--secondary-color);
+    color: var(--neutral-dark);
+    transform: translateY(-2px);
+}
+
+
+/* Swiper Navigation & Pagination Styling */
+.hero-swiper .swiper-button-next,
+.hero-swiper .swiper-button-prev {
+    color: #fff; /* White arrows */
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    width: 30px; /* Smaller arrows */
+    height: 30px;
+}
+.hero-swiper .swiper-button-next:hover,
+.hero-swiper .swiper-button-prev:hover {
+    opacity: 1;
+}
+.hero-swiper .swiper-button-next::after,
+.hero-swiper .swiper-button-prev::after {
+    font-size: 24px; /* Adjust arrow size */
+    font-weight: 900;
+}
+
+.hero-swiper .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.7);
+    width: 10px;
+    height: 10px;
+    opacity: 0.8;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+    background: var(--accent-color);
+    opacity: 1;
+    width: 12px; /* Slightly larger active bullet */
+    height: 12px;
+}
+
+
+/* Responsive adjustments for hero slider content if needed */
+@media(max-width: 768px) {
+    .hero-slide-content .hero-leading-text {
+        font-size: 2.2em;
+    }
+    .hero-slide-content .hero-caption {
+        font-size: 1em;
+    }
+    .hero-slide-content .hero-slide-cta {
+        padding: 10px 25px;
+        font-size: 0.9em;
+    }
+    .hero-swiper .swiper-button-next,
+    .hero-swiper .swiper-button-prev {
+        /* display: none; */ /* Optionally hide arrows on mobile */
+        width: 25px;
+        height: 25px;
+    }
+    .hero-swiper .swiper-button-next::after,
+    .hero-swiper .swiper-button-prev::after {
+        font-size: 20px;
+    }
+}
         opacity: 0;
         transform: translateY(30px);
     }

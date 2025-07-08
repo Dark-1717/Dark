@@ -78,4 +78,54 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
+    // Hero Swiper Initialization
+    // For more Swiper API options, see: https://swiperjs.com/swiper-api
+    const heroSwiper = new Swiper('.hero-swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+        effect: 'slide', // Can be 'fade', 'cube', 'coverflow', 'flip'
+        autoplay: {
+            delay: 7000, // Time between slides in ms
+            disableOnInteraction: false, // Autoplay will not be disabled after user interactions (swipes)
+        },
+        speed: 800, // Transition speed in ms
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // Accessibility
+        a11y: {
+            prevSlideMessage: 'Previous slide',
+            nextSlideMessage: 'Next slide',
+            paginationBulletMessage: 'Go to slide {{index}}',
+        },
+
+        // Watch for active slide changes to re-trigger animations if needed by a more complex setup
+        // For the current CSS setup (.swiper-slide-active), this is mostly handled by Swiper's classing.
+        // However, if animations needed to be reset and replayed explicitly:
+        on: {
+            slideChangeTransitionStart: function () {
+                // Optional: If elements weren't purely CSS animated based on swiper-slide-active
+                // you could remove animation classes from all slides here.
+                // e.g., this.slides.forEach(slide => {
+                //   slide.querySelectorAll('.animated-element').forEach(el => el.classList.remove('animate-in'));
+                // });
+            },
+            slideChangeTransitionEnd: function () {
+                // Optional: And add them to the active slide here.
+                // e.g. const activeSlide = this.slides[this.activeIndex];
+                // activeSlide.querySelectorAll('.animated-element').forEach(el => el.classList.add('animate-in'));
+            }
+        }
+    });
 });

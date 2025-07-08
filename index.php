@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LKD Travel - Discover Sri Lanka</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- SwiperJS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -31,12 +33,108 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - Swiper Slideshow -->
     <section id="hero">
-        <div class="hero-content">
-            <h1>Discover Sri Lanka's Wonders</h1>
-            <p>Your journey to the pearl of the Indian Ocean begins here.</p>
-            <a href="#packages" class="btn btn-primary">Explore Packages</a>
+        <!-- Swiper -->
+        <div class="swiper-container hero-swiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide" style="background-image: url('images/hero-slide-1.jpg');">
+                    <div class="hero-slide-overlay"></div>
+                    <div class="container hero-slide-content">
+                        <div class="hero-business-info">
+                            <!-- CMS: Business Info -->
+                            <p>LKD Travel / Est. 2005</p>
+                        </div>
+                        <!-- Placeholder for custom JS Animated Rotating Text -->
+                        <div class="hero-rotating-text-placeholder">
+                            <!-- CMS: Rotating Text Items -->
+                            <span>Explore</span>
+                            <span>Discover</span>
+                            <span>Experience</span>
+                        </div>
+                        <!-- CMS: Leading Text -->
+                        <h1 class="hero-leading-text">Adventure Awaits in Serene Sri Lanka</h1>
+                        <!-- CMS: Caption -->
+                        <p class="hero-caption">Unforgettable journeys tailored just for you. Witness breathtaking landscapes and vibrant cultures.</p>
+                        <!-- CMS: CTA Button Text & Link. data-video-id for JS lightbox. -->
+                        <a href="#" class="btn btn-primary hero-slide-cta" data-video-id="VIDEO_ID_1">Watch Our Story (Video Lightbox)</a>
+                    </div>
+                </div>
+                <!-- Slide 2 - CMS: All content for slide 2 (bg image, texts, cta, video_id) -->
+                <div class="swiper-slide" style="background-image: url('images/hero-slide-2.jpg');">
+                    <div class="hero-slide-overlay"></div>
+                    <div class="container hero-slide-content">
+                        <div class="hero-business-info">
+                            <p>Your Trusted Travel Partner</p>
+                        </div>
+                        <div class="hero-rotating-text-placeholder">
+                            <span>Culture</span>
+                            <span>Nature</span>
+                            <span>Relaxation</span>
+                        </div>
+                        <h1 class="hero-leading-text">Immerse in Rich Cultural Heritage</h1>
+                        <p class="hero-caption">From ancient temples to colonial charm, explore the island's timeless tales.</p>
+                        <a href="#" class="btn btn-primary hero-slide-cta" data-video-id="VIDEO_ID_2">Discover More (Video Lightbox)</a>
+                    </div>
+                </div>
+                <!-- Slide 3 - CMS: All content for slide 3 -->
+                <div class="swiper-slide" style="background-image: url('images/hero-slide-3.jpg');">
+                    <div class="hero-slide-overlay"></div>
+                    <div class="container hero-slide-content">
+                         <div class="hero-business-info">
+                            <p>Award Winning Service</p>
+                        </div>
+                        <div class="hero-rotating-text-placeholder">
+                            <span>Beaches</span>
+                            <span>Mountains</span>
+                            <span>Wildlife</span>
+                        </div>
+                        <h1 class="hero-leading-text">Pristine Beaches & Lush Highlands</h1>
+                        <p class="hero-caption">Relax on golden sands or trek through emerald tea plantations.</p>
+                        <a href="#" class="btn btn-primary hero-slide-cta" data-video-id="VIDEO_ID_3">See Gallery (Video Lightbox)</a>
+                    </div>
+                </div>
+                <!-- Slide 4 - CMS: All content for slide 4 -->
+                <div class="swiper-slide" style="background-image: url('images/hero-slide-4.jpg');">
+                    <div class="hero-slide-overlay"></div>
+                    <div class="container hero-slide-content">
+                        <div class="hero-business-info">
+                            <p>Tailored Experiences</p>
+                        </div>
+                        <div class="hero-rotating-text-placeholder">
+                            <span>Luxury</span>
+                            <span>Adventure</span>
+                            <span>Wellness</span>
+                        </div>
+                        <h1 class="hero-leading-text">Luxury Meets Wild Adventure</h1>
+                        <p class="hero-caption">Indulge in premium comfort while exploring the untamed beauty of Sri Lanka.</p>
+                        <a href="#" class="btn btn-primary hero-slide-cta" data-video-id="VIDEO_ID_4">Plan Your Escape (Video Lightbox)</a>
+                    </div>
+                </div>
+                <!-- Slide 5 - CMS: All content for slide 5 -->
+                <div class="swiper-slide" style="background-image: url('images/hero-slide-5.jpg');">
+                    <div class="hero-slide-overlay"></div>
+                    <div class="container hero-slide-content">
+                        <div class="hero-business-info">
+                            <p>Book Your Dream Vacation</p>
+                        </div>
+                        <div class="hero-rotating-text-placeholder">
+                            <span>Memories</span>
+                            <span>Journeys</span>
+                            <span>Dreams</span>
+                        </div>
+                        <h1 class="hero-leading-text">Create Lasting Memories With Us</h1>
+                        <p class="hero-caption">Let us craft your perfect Sri Lankan holiday. Adventure is calling!</p>
+                        <a href="#packages" class="btn btn-primary hero-slide-cta">Explore Packages</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
     </section>
 
@@ -222,6 +320,8 @@
         </div>
     </footer>
 
+    <!-- SwiperJS JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script> <!-- For JavaScript interactions -->
 </body>
 </html>
