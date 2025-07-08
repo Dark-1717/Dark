@@ -39,7 +39,7 @@
         <div class="swiper-container hero-swiper">
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
-                <div class="swiper-slide" style="background-image: url('images/hero-slide-1.jpg');">
+                <div class="swiper-slide" style="background-image: url('images/hero-slide-1.svg');">
                     <div class="hero-slide-overlay"></div>
                     <div class="container hero-slide-content">
                         <div class="hero-business-info">
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <!-- Slide 2 - CMS: All content for slide 2 (bg image, texts, cta, video_id) -->
-                <div class="swiper-slide" style="background-image: url('images/hero-slide-2.jpg');">
+                <div class="swiper-slide" style="background-image: url('images/hero-slide-2.svg');">
                     <div class="hero-slide-overlay"></div>
                     <div class="container hero-slide-content">
                         <div class="hero-business-info">
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <!-- Slide 3 - CMS: All content for slide 3 -->
-                <div class="swiper-slide" style="background-image: url('images/hero-slide-3.jpg');">
+                <div class="swiper-slide" style="background-image: url('images/hero-slide-3.svg');">
                     <div class="hero-slide-overlay"></div>
                     <div class="container hero-slide-content">
                          <div class="hero-business-info">
@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <!-- Slide 4 - CMS: All content for slide 4 -->
-                <div class="swiper-slide" style="background-image: url('images/hero-slide-4.jpg');">
+                <div class="swiper-slide" style="background-image: url('images/hero-slide-4.svg');">
                     <div class="hero-slide-overlay"></div>
                     <div class="container hero-slide-content">
                         <div class="hero-business-info">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <!-- Slide 5 - CMS: All content for slide 5 -->
-                <div class="swiper-slide" style="background-image: url('images/hero-slide-5.jpg');">
+                <div class="swiper-slide" style="background-image: url('images/hero-slide-5.svg');">
                     <div class="hero-slide-overlay"></div>
                     <div class="container hero-slide-content">
                         <div class="hero-business-info">
