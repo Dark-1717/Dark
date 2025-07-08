@@ -17,8 +17,13 @@ body {
     color: var(--neutral-dark);
     margin: 0;
     padding: 0;
-    background-color: var(--neutral-light);
+    /* background-color: var(--neutral-light); // Replaced by background image */
     scroll-behavior: smooth;
+    background-image: url('../images/full-bg-placeholder.svg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 .container {
