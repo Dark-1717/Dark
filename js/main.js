@@ -84,12 +84,56 @@ document.addEventListener('DOMContentLoaded', function() {
         // Optional parameters
         direction: 'horizontal',
         loop: true,
-        effect: 'slide', // Can be 'fade', 'cube', 'coverflow', 'flip'
-        autoplay: {
-            delay: 7000, // Time between slides in ms
-            disableOnInteraction: false, // Autoplay will not be disabled after user interactions (swipes)
+        // effect: 'slide', // Changed to 'creative'
+        speed: 1000, // Adjusted speed for creative effect visibility
+        grabCursor: true, // Good for creative effects
+        effect: 'creative',
+        creativeEffect: {
+            // For Creative Effect, `prev` defines transformations for the slide that is moving out of view (becoming previous)
+            // Swiper then animates the outgoing slide from its normal state TO this `prev` state.
+            prev: {
+                shadow: true,
+                translate: ['-100%', 0, -500], // Slide far left and back
+                rotate: [0, 0, -25],          // Rotate out
+                opacity: 0,                    // Fade out
+                scale: 0.8,                    // Scale down
+            },
+            // `next` defines transformations for the slide that is moving into view (becoming next)
+            // Swiper then animates the incoming slide FROM this `next` state TO its normal state (center, full opacity/scale).
+            next: {
+                shadow: true,
+                translate: ['100%', 0, -500],  // Come from far right and back
+                rotate: [0, 0, 25],           // Rotate in
+                opacity: 0,                     // Start transparent
+                scale: 0.8,                     // Start scaled down
+            },
+            // progressMultiplier: 1, // Can be used to make the effect more sensitive to swipe/drag gestures
+            // slideShadows: true,
+            // on: {
+            //     setTransition: function (swiper, transition) {
+            //         for (var i = 0; i < swiper.slides.length; i++) {
+            //             var slide = swiper.slides[i];
+            //             slide.style.transition = transition + "ms";
+            //         }
+            //     },
+            //     setTranslate: function (swiper) {
+            //         var slides = swiper.slides;
+            //         for (var i = 0; i < slides.length; i++) {
+            //             var slide = slides[i];
+            //             var progress = slide.progress;
+            //             var opacity = 1 - Math.abs(progress / 2);
+            //             var scale = 1 - Math.abs(progress / 4);
+            //             var translateZ = -Math.abs(progress * 100);
+            //             slide.style.opacity = opacity;
+            //             slide.style.transform = 'translate3d(0,0,' + translateZ + 'px) scale(' + scale + ')';
+            //         }
+            //     }
+            // }
         },
-        speed: 800, // Transition speed in ms
+        // autoplay: { // Disabled for mouse interaction
+        //     delay: 7000,
+        //     disableOnInteraction: false,
+        // },
 
         // If we need pagination
         pagination: {
@@ -128,4 +172,43 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    // Mouse Move Interaction for Hero Swiper
+    const heroSwiperContainer = document.querySelector('.hero-swiper');
+    if (heroSwiperContainer && heroSwiper.slides.length > 1) { // Ensure swiper instance and container exist
+        let mouseMoveTimeout;
+        const slideChangeDelay = 150; // ms - throttle slide changes
+
+        heroSwiperContainer.addEventListener('mousemove', function(event) {
+            clearTimeout(mouseMoveTimeout);
+            mouseMoveTimeout = setTimeout(function() {
+                const rect = heroSwiperContainer.getBoundingClientRect();
+                const mouseX = event.clientX - rect.left; // Mouse X relative to the slider
+                const sliderWidth = rect.width;
+
+                // Calculate which slide segment the mouse is in
+                const numberOfSlides = heroSwiper.params.slidesPerView === 'auto' ? heroSwiper.slides.length : heroSwiper.params.slidesPerView;
+                // For loop mode, we use realIndex to map to original slide count if slidesPerView is 1
+                const totalSegments = heroSwiper.slides.length / (heroSwiper.params.slidesPerGroup || 1) ; // This might need adjustment based on loop and slidesPerGroup
+
+                // Simplified approach: map mouse X directly to a slide index based on original number of slides (before loop duplication)
+                const originalSlidesCount = heroSwiper.el.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate)').length;
+                const segmentWidth = sliderWidth / originalSlidesCount;
+                let targetSlideRealIndex = Math.floor(mouseX / segmentWidth);
+
+                // Clamp the index to be within valid bounds of original slides
+                targetSlideRealIndex = Math.max(0, Math.min(targetSlideRealIndex, originalSlidesCount - 1));
+
+                if (heroSwiper.realIndex !== targetSlideRealIndex) {
+                    heroSwiper.slideToLoop(targetSlideRealIndex, heroSwiper.params.speed / 2 ); // Use half of transition speed for quicker reaction
+                }
+            }, slideChangeDelay);
+        });
+
+        // Optional: Pause slide change on mouse leave and resume on enter, or reset to first slide
+        // heroSwiperContainer.addEventListener('mouseleave', function() {
+        //     clearTimeout(mouseMoveTimeout);
+        //     // heroSwiper.slideToLoop(0, heroSwiper.params.speed); // Example: return to first slide
+        // });
+    }
 });
