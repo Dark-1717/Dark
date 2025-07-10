@@ -1,4 +1,14 @@
 /* Basic Reset */
+html {
+    box-sizing: border-box; /* Apply box-sizing to html to inherit */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* , *:before, *:after { /* Inherit box-sizing */
+    box-sizing: inherit;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -26,7 +36,18 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden; /* Prevent horizontal scroll caused by minor overflows */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
+
+/* General Image Responsiveness */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below images */
+}
+
 
 /* Dark Mode Styles */
 body.dark-mode {
@@ -405,6 +426,17 @@ body.dark-mode #contact-form textarea {
     transform: scale(1.2);
 }
 
+/* Hamburger Menu Animation to X */
+.menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 
 /* Footer */
 footer {
@@ -423,57 +455,88 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Ensure a comfortable base font size for mobile */
+    }
+
+    .navbar {
+        padding: 0 15px; /* Slightly reduce navbar padding */
+    }
+
+    .logo {
+        font-size: 1.6em; /* Adjust logo size */
+    }
+
     .nav-links {
-        display: none; /* Hide links */
+        /* display: none; Hide links - Replaced by max-height transition */
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 65px; /* Adjust based on header height */
+        top: 60px; /* Adjust based on new header height potentially */
         left: 0;
         background-color: var(--ocean-blue);
-        padding: 10px 0;
+        padding: 0; /* Padding will be on li > a */
+        box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        visibility: hidden;
     }
 
     .nav-links.active {
-        display: flex; /* Show when active */
+        /* display: flex; Show when active - Replaced by max-height transition */
+        max-height: 500px; /* Adjust if more items are added */
+        opacity: 1;
+        visibility: visible;
+        padding: 15px 0; /* Add padding back when active */
     }
 
     .nav-links li {
         text-align: center;
-        margin: 10px 0;
+        margin: 0; /* Remove individual margin, rely on link padding */
         width: 100%;
     }
 
     .nav-links li a {
         display: block;
-        padding: 10px;
+        padding: 15px 20px; /* Increase padding for better touch targets */
+        font-size: 1.1em;
     }
 
     .menu-toggle {
         display: flex; /* Show hamburger */
+        padding: 5px; /* Add some padding to make hamburger easier to tap */
     }
 
-    .language-switcher {
-        margin-left: auto; /* Push language switcher to the right of hamburger */
-        margin-right: 10px;
+    /* Adjust layout of theme and language switchers for mobile */
+    .theme-switcher, .language-switcher {
+        margin-left: 8px; /* Slightly reduce margin */
     }
-    .theme-switcher {
-         margin-left: 0; /* remove margin when stacked */
+    /* .language-switcher {
+         margin-left: auto;
+         margin-right: 10px;
+    }*/
+    .theme-switcher button, .language-switcher button {
+        padding: 6px 10px; /* Slightly adjust padding for mobile */
+        font-size: 0.9em;
     }
 
 
     .hero-content h1 {
-        font-size: 2.5em;
+        font-size: 2.2em; /* Adjust for mobile */
+        line-height: 1.2;
     }
 
     .hero-content p {
-        font-size: 1.2em;
+        font-size: 1.1em; /* Adjust for mobile */
+        margin-bottom: 25px;
     }
 
     .cta-button {
-        padding: 12px 24px;
+        padding: 14px 28px; /* Slightly increase padding */
         font-size: 1em;
-        margin-bottom: 10px; /* Stack buttons on mobile */
+        margin-bottom: 12px;
         display: block;
         width: fit-content;
         margin-left: auto;
@@ -483,21 +546,64 @@ footer p {
         margin-bottom: 0;
     }
 
+    section {
+        padding: 40px 15px; /* Reduce section padding on mobile */
+    }
+
     section h2 {
-        font-size: 2em;
+        font-size: 1.8em; /* Adjust section titles for mobile */
+        margin-bottom: 25px;
     }
 
     .itinerary {
         grid-template-columns: 1fr; /* Stack day cards on smaller screens */
+        gap: 20px;
     }
+    .day-card {
+        padding: 15px; /* Adjust card padding */
+    }
+    .day-card h3 {
+        font-size: 1.3em;
+    }
+     .day-card p {
+        font-size: 0.9em;
+        line-height: 1.5;
+    }
+
 
     .vehicle-list {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
     }
     .vehicle-card {
         width: 90%;
-        max-width: 350px;
+        max-width: 320px; /* Slightly adjust max-width */
+        padding: 15px;
+    }
+    .vehicle-card h4 {
+        font-size: 1.2em;
+    }
+
+    #contact-form {
+        padding: 20px; /* Adjust form padding */
+    }
+    #contact-form label {
+        font-size: 0.95em;
+    }
+    #contact-form input[type="text"],
+    #contact-form input[type="email"],
+    #contact-form textarea {
+        padding: 12px; /* Increase padding for inputs */
+        font-size: 1em;
+    }
+    #contact-form button[type="submit"] {
+        padding: 14px; /* Increase padding for submit button */
+        font-size: 1.05em;
+    }
+
+    main {
+        padding-top: 70px; /* Adjust for potentially smaller fixed header on mobile */
     }
 }
 

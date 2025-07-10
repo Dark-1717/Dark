@@ -116,19 +116,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
-
-// Add some CSS for the active hamburger icon (optional)
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = `
-.menu-toggle.is-active .bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-}
-.menu-toggle.is-active .bar:nth-child(2) {
-    opacity: 0;
-}
-.menu-toggle.is-active .bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-}
-`;
-document.head.appendChild(styleSheet);
