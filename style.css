@@ -1,0 +1,656 @@
+/* Basic Reset */
+html {
+    box-sizing: border-box; /* Apply box-sizing to html to inherit */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* , *:before, *:after { /* Inherit box-sizing */
+    box-sizing: inherit;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Color Palette */
+:root {
+    --ocean-blue: #0077be; /* Primary */
+    --light-green: #90ee90; /* Accent */
+    --white: #ffffff;
+    --black: #000000;
+    --light-gray: #f4f4f4;
+    --dark-gray: #333333;
+    --text-color: var(--dark-gray);
+    --background-color: var(--white);
+    --card-background: var(--white);
+    --gradient-start: var(--ocean-blue);
+    --gradient-end: var(--light-green);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden; /* Prevent horizontal scroll caused by minor overflows */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* General Image Responsiveness */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below images */
+}
+
+
+/* Dark Mode Styles */
+body.dark-mode {
+    --text-color: var(--light-gray);
+    --background-color: var(--dark-gray);
+    --card-background: #444444;
+    --gradient-start: var(--light-green); /* Swapping gradient for dark mode for contrast */
+    --gradient-end: var(--ocean-blue);
+}
+
+header {
+    background-color: var(--ocean-blue);
+    color: var(--white);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--light-green);
+}
+
+.theme-switcher button,
+.language-switcher button {
+    background: none;
+    border: 1px solid var(--white);
+    color: var(--white);
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-switcher button:hover,
+.language-switcher button:hover {
+    background-color: var(--white);
+    color: var(--ocean-blue);
+}
+
+.language-switcher {
+    margin-left: 15px;
+}
+
+
+/* Hamburger Menu for Mobile */
+.menu-toggle {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: var(--white);
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+main {
+    padding-top: 80px; /* Adjust based on header height */
+}
+
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--ocean-blue);
+}
+
+body.dark-mode section h2 {
+    color: var(--light-green);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(to right, rgba(0, 119, 190, 0.8), rgba(144, 238, 144, 0.8)), url('images/sri_lanka_hero.jpg') no-repeat center center/cover;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+}
+
+.gradient-text {
+    background: -webkit-linear-gradient(var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.dark-mode .hero-section .gradient-text { /* Ensure hero gradient text is visible in dark mode */
+     background: -webkit-linear-gradient(#fff, #eee); /* Simple white/light grey gradient for dark bg */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: var(--ocean-blue);
+    color: var(--white);
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    margin: 0 10px;
+    transition: background-color 0.3s, transform 0.3s;
+    border: 2px solid var(--ocean-blue);
+}
+
+.cta-button:hover {
+    background-color: var(--light-green);
+    color: var(--ocean-blue);
+    border-color: var(--light-green);
+    transform: translateY(-3px);
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    border: 2px solid var(--white);
+}
+
+.cta-button.secondary:hover {
+    background-color: var(--white);
+    color: var(--ocean-blue);
+}
+
+
+/* Packages Section */
+.packages-section {
+    background-color: var(--light-gray);
+}
+body.dark-mode .packages-section {
+    background-color: #2a2a2a;
+}
+
+.itinerary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.day-card {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.day-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.day-card h3 {
+    color: var(--ocean-blue);
+    margin-bottom: 10px;
+}
+body.dark-mode .day-card h3 {
+    color: var(--light-green);
+}
+
+.day-card img {
+    width: 100%;
+    max-width: 300px; /* Max width for day card images */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 200px; /* Consistent max height */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-left: auto; /* Center if smaller than max-width */
+    margin-right: auto; /* Center if smaller than max-width */
+}
+
+.day-card p {
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+
+/* Vehicles Section */
+.vehicles-section {
+    background-color: var(--background-color);
+}
+
+.vehicle-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.vehicle-card {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 280px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.vehicle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.vehicle-card img {
+    width: 100%;
+    max-width: 250px; /* Max width for vehicle images */
+    height: 180px; /* Fixed height for vehicle images */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-left: auto; /* Center if smaller than max-width */
+    margin-right: auto; /* Center if smaller than max-width */
+}
+
+.vehicle-card h4 {
+    color: var(--ocean-blue);
+    font-size: 1.3em;
+}
+body.dark-mode .vehicle-card h4 {
+    color: var(--light-green);
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--light-gray);
+}
+body.dark-mode .contact-section {
+    background-color: #2a2a2a;
+}
+
+.contact-section p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.contact-section a {
+    color: var(--ocean-blue);
+    text-decoration: none;
+}
+body.dark-mode .contact-section a {
+    color: var(--light-green);
+}
+
+.contact-section a:hover {
+    text-decoration: underline;
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: 30px auto 0;
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+#contact-form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--ocean-blue);
+}
+body.dark-mode #contact-form h3 {
+    color: var(--light-green);
+}
+
+#contact-form div {
+    margin-bottom: 15px;
+}
+
+#contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+body.dark-mode #contact-form input[type="text"],
+body.dark-mode #contact-form input[type="email"],
+body.dark-mode #contact-form textarea {
+    background-color: #555;
+    border-color: #666;
+    color: var(--text-color);
+}
+
+
+#contact-form textarea {
+    resize: vertical;
+}
+
+#contact-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+}
+
+.social-links {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    display: inline-block; /* Allows transform */
+    transition: transform 0.3s;
+}
+
+.social-links img {
+    width: 32px; /* Adjust size as needed */
+    height: 32px;
+}
+.social-links a:hover {
+    transform: scale(1.2);
+}
+
+/* Hamburger Menu Animation to X */
+.menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--dark-gray);
+    color: var(--light-gray);
+    text-align: center;
+    padding: 20px;
+}
+body.dark-mode footer {
+    background-color: #222; /* Slightly darker for dark mode footer */
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Ensure a comfortable base font size for mobile */
+    }
+
+    .navbar {
+        padding: 0 15px; /* Slightly reduce navbar padding */
+    }
+
+    .logo {
+        font-size: 1.6em; /* Adjust logo size */
+    }
+
+    .nav-links {
+        /* display: none; Hide links - Replaced by max-height transition */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Adjust based on new header height potentially */
+        left: 0;
+        background-color: var(--ocean-blue);
+        padding: 0; /* Padding will be on li > a */
+        box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        visibility: hidden;
+    }
+
+    .nav-links.active {
+        /* display: flex; Show when active - Replaced by max-height transition */
+        max-height: 500px; /* Adjust if more items are added */
+        opacity: 1;
+        visibility: visible;
+        padding: 15px 0; /* Add padding back when active */
+    }
+
+    .nav-links li {
+        text-align: center;
+        margin: 0; /* Remove individual margin, rely on link padding */
+        width: 100%;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 15px 20px; /* Increase padding for better touch targets */
+        font-size: 1.1em;
+    }
+
+    .menu-toggle {
+        display: flex; /* Show hamburger */
+        padding: 5px; /* Add some padding to make hamburger easier to tap */
+    }
+
+    /* Adjust layout of theme and language switchers for mobile */
+    .theme-switcher, .language-switcher {
+        margin-left: 8px; /* Slightly reduce margin */
+    }
+    /* .language-switcher {
+         margin-left: auto;
+         margin-right: 10px;
+    }*/
+    .theme-switcher button, .language-switcher button {
+        padding: 6px 10px; /* Slightly adjust padding for mobile */
+        font-size: 0.9em;
+    }
+
+
+    .hero-content h1 {
+        font-size: 2.2em; /* Adjust for mobile */
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 1.1em; /* Adjust for mobile */
+        margin-bottom: 25px;
+    }
+
+    .cta-button {
+        padding: 14px 28px; /* Slightly increase padding */
+        font-size: 1em;
+        margin-bottom: 12px;
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .cta-button.secondary {
+        margin-bottom: 0;
+    }
+
+    section {
+        padding: 40px 15px; /* Reduce section padding on mobile */
+    }
+
+    section h2 {
+        font-size: 1.8em; /* Adjust section titles for mobile */
+        margin-bottom: 25px;
+    }
+
+    .itinerary {
+        grid-template-columns: 1fr; /* Stack day cards on smaller screens */
+        gap: 20px;
+    }
+    .day-card {
+        padding: 15px; /* Adjust card padding */
+    }
+    .day-card h3 {
+        font-size: 1.3em;
+    }
+     .day-card p {
+        font-size: 0.9em;
+        line-height: 1.5;
+    }
+
+
+    .vehicle-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .vehicle-card {
+        width: 90%;
+        max-width: 320px; /* Slightly adjust max-width */
+        padding: 15px;
+    }
+    .vehicle-card h4 {
+        font-size: 1.2em;
+    }
+
+    #contact-form {
+        padding: 20px; /* Adjust form padding */
+    }
+    #contact-form label {
+        font-size: 0.95em;
+    }
+    #contact-form input[type="text"],
+    #contact-form input[type="email"],
+    #contact-form textarea {
+        padding: 12px; /* Increase padding for inputs */
+        font-size: 1em;
+    }
+    #contact-form button[type="submit"] {
+        padding: 14px; /* Increase padding for submit button */
+        font-size: 1.05em;
+    }
+
+    main {
+        padding-top: 70px; /* Adjust for potentially smaller fixed header on mobile */
+    }
+}
+
+/* Animations (example - can be expanded) */
+.day-card, .vehicle-card, .cta-button {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Placeholder for images - will create a directory for these */
+/* e.g. images/negombo_beach.jpg */
+/* e.g. icons/facebook.svg */
+
+/* Ensure image placeholders are somewhat styled if images are missing */
+img {
+    display: block;
+    background-color: #eee; /* Light placeholder color */
+    border: 1px solid #ddd;
+}
+
+body.dark-mode img {
+    background-color: #555; /* Darker placeholder for dark mode */
+    border: 1px solid #444;
+}
+
+/* Accessibility: Focus Visible */
+a:focus-visible, button:focus-visible {
+    outline: 2px dashed var(--ocean-blue);
+    outline-offset: 2px;
+}
+body.dark-mode a:focus-visible, body.dark-mode button:focus-visible {
+    outline-color: var(--light-green);
+}
+
+```
+
+I've included styles for:
+- Basic reset and variables for the color scheme.
+- Dark mode using a `body.dark-mode` class.
+- Header, navigation (with initial setup for mobile hamburger), theme switcher, and language switcher.
+- Hero section with gradient text and CTA buttons.
+- Package section with a grid layout for day cards.
+- Vehicle section with flex layout for vehicle cards.
+- Contact section with form styling.
+- Footer.
+- Basic responsive media query for smaller screens (<= 768px) to stack elements and prepare for the hamburger menu functionality.
+- Hover effects for cards and buttons.
+- Placeholder styles for images.
+- Accessibility focus styles.
+
+I will now also create the `images` and `icons` directories, as they are referenced in the HTML and CSS. For now, these will be empty. The actual images will be added in a later step.
